@@ -15,37 +15,22 @@
 	border:none;
 }
 
-.fsn-menu.main .dropdown-menu {
-	border: none;
-	border-top:1px solid #ededed;
-	border-radius: 0;
-	padding:18px 3px;
-}
-
 .fsn-menu.main .dropdown-menu > li.h5	{
 	margin:0;
 	clear: both;
 	display:block;
-	font-weight:400;	
 	line-height: 1.42857;
-	padding: 3px 20px;
 	white-space: nowrap;
 }
 
 .fsn-menu.main .dropdown-menu > li.h5 > a	{
-	font-weight:400;
 	color:inherit;
 	padding:0;
+	font-weight:inherit;
 }
 
 .fsn-menu.main .dropdown-menu > li.h5 > a:hover, .fsn-menu.main .dropdown-menu > li.h5 > a:focus {
 	background-color: transparent;
-}
-
-.fsn-menu.main .dropdown-menu .divider	{
-	background-color:#ebebeb;
-	margin-left:11px;
-	margin-right:11px;
 }
 
 .fsn-menu.main .dropdown-menu .dropdown-menu {
@@ -115,19 +100,39 @@
 	.fsn-menu.main .dropdown-menu .container-fluid	{
 		padding:0;
 	}
+	.fsn-menu.main .dropdown-menu > li.h5	{
+		padding:5px 15px;
+	}
+	.fsn-menu.main .navbar-default .navbar-nav .open .dropdown-menu>li.h5>a, .fsn-menu.main .navbar-default .navbar-nav .open .dropdown-menu>li.h5>a:hover, .fsn-menu.main .navbar-default .navbar-nav .open .dropdown-menu>li.h5>a:focus	{
+		background:transparent;
+		color:inherit;
+	}
+	.fsn-menu.main .navbar-default .navbar-nav .open .dropdown-menu>li.h5.active	{
+		background:#e7e7e7;
+	}
 	.fsn-menu.main .dropdown-menu .divider	{
-		background-color:#ebebeb;
-		margin-left:0;
-		margin-right:0;
+		margin-left:15px;
+		margin-right:15px;
 	}
 }
 
 @media (min-width: 768px) {
+	.fsn-menu.main .dropdown-menu {
+		border: none;
+		border-top:1px solid #efefef;
+		border-top:1px solid rgba(0, 0, 0, 0.05);
+		border-radius: 0;
+		padding:18px 3px;
+	}
 	.multi-col-nav-container.loading	{
 		display:block;
 		height:0;
 		overflow:hidden;
 		visibility:hidden;
+	}
+	.fsn-menu.main .dropdown-menu>li>a	{
+		padding-left:14px;
+		padding-right:14px;
 	}
 	.fsn-menu.main .dropdown-menu > li > a:hover, .fsn-menu.main .dropdown-menu > li > a:focus	{
 		background-color:transparent;
@@ -136,8 +141,11 @@
 		background-color:transparent;
 		color:#337ab7;
 	}
-	.fsn-menu.main .dropdown-menu > li > a	{
-		padding-left:11px;
-		padding-right:11px;
+	.fsn-menu.main .dropdown-menu > li.h5	{
+		padding: 3px 14px;
+	}
+	.fsn-menu.main .dropdown-menu .divider	{
+		margin-left:14px;
+		margin-right:14px;
 	}
 }
