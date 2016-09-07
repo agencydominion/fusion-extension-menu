@@ -41,14 +41,21 @@ function fsnUpdateMenu(event) {
 
 //update menu layout
 function fsnUpdateMenuLayout() {
-	
+	var postID = jQuery('input#post_ID').val();
 	var menuLayout = jQuery('[name="menu_layout"]').val();
 	
 	var data = {
 		action: 'menu_load_layout',
-		menu_layout: menuLayout
+		menu_layout: menuLayout,
+		post_id: postID,
+		security: fsnExtMenuJS.fsnEditMenuNonce
 	};
 	jQuery.post(ajaxurl, data, function(response) {
+		if (response == '-1') {
+			alert('Oops, something went wrong. Please reload the page and try again.');
+			return false;
+		}
+		
 		jQuery('#fsn_menu_modal .tab-pane .form-group.menu-layout').remove();
 		if (response !== null) {
 			jQuery('#fsn_menu_modal .tab-pane').each(function() {
