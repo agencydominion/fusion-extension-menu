@@ -45,6 +45,13 @@ class FusionMenu	{
 	 */
 	 
 	public function load_menu_layout() {
+		//verify nonce
+		check_ajax_referer( 'fsn-admin-edit-menu', 'security' );
+		
+		//verify capabilities
+		if ( !current_user_can( 'edit_post', $_POST['post_id'] ) )
+			die( '-1' );
+			
 		global $fsn_menu_layouts;
 		$menu_layout = $_POST['menu_layout'];
 		
