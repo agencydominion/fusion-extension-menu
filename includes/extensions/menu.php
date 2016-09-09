@@ -66,17 +66,16 @@ class FusionMenu	{
 					$depends_on_field = $param['dependency']['param_name'];
 					$depends_on_not_empty = !empty($param['dependency']['not_empty']) ? $param['dependency']['not_empty'] : false;
 					if (!empty($param['dependency']['value']) && is_array($param['dependency']['value'])) {
-						$depends_on_value = esc_attr(json_encode($param['dependency']['value']));
+						$depends_on_value = json_encode($param['dependency']['value']);
 					} else if (!empty($param['dependency']['value'])) {
 						$depends_on_value = $param['dependency']['value'];
 					} else {
 						$depends_on_value = '';
 					}
-					
 					$dependency_callback = !empty($param['dependency']['callback']) ? $param['dependency']['callback'] : '';
-					$dependency_string = ' data-dependency-param="'. $depends_on_field .'"'. ($depends_on_not_empty === true ? ' data-dependency-not-empty="true"' : '') . (!empty($depends_on_value) ? ' data-dependency-value="'. $depends_on_value .'"' : '') . (!empty($dependency_callback) ? ' data-dependency-callback="'. $dependency_callback .'"' : '');
+					$dependency_string = ' data-dependency-param="'. esc_attr($depends_on_field) .'"'. ($depends_on_not_empty === true ? ' data-dependency-not-empty="true"' : '') . (!empty($depends_on_value) ? ' data-dependency-value="'. esc_attr($depends_on_value) .'"' : '') . (!empty($dependency_callback) ? ' data-dependency-callback="'. esc_attr($dependency_callback) .'"' : '');
 				}
-				$param_output = '<div class="form-group menu-layout'. ( !empty($param['class']) ? ' '. $param['class'] : '' ) .'"'. ( $dependency === true ? $dependency_string : '' ) .'>';
+				$param_output = '<div class="form-group menu-layout'. ( !empty($param['class']) ? ' '. esc_attr($param['class']) : '' ) .'"'. ( $dependency === true ? $dependency_string : '' ) .'>';
 					$param_output .= FusionCore::get_input_field($param, $param_value);
 				$param_output .= '</div>';
 				$response_array[] = array(
@@ -210,7 +209,7 @@ class FusionMenu	{
 		$output = '';
 		
 		if (!empty($menu_layout)) {
-			$output .= '<div class="fsn-menu '. $menu_layout .' '. fsn_style_params_class($atts) .'">';
+			$output .= '<div class="fsn-menu '. esc_attr($menu_layout) .' '. fsn_style_params_class($atts) .'">';
 				$callback_function = 'fsn_get_'. $menu_layout .'_menu';
 				$output .= call_user_func($callback_function, $atts, $content);
 			$output .= '</div>';
@@ -376,7 +375,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
 		$unique_id = uniqid();
 		if (!empty($mobile_logo_id)) {
 			$mobile_logo_attrs = wp_get_attachment_image_src($mobile_logo_id, 'full');
-			$mobile_brand = '<img src="'. $mobile_logo_attrs[0] .'" alt="'. get_bloginfo('name') .'">';
+			$mobile_brand = '<img src="'. esc_url($mobile_logo_attrs[0]) .'" alt="'. esc_attr(get_bloginfo('name')) .'">';
 		} else {
 			$mobile_brand = get_bloginfo('name');
 		}
@@ -387,15 +386,15 @@ function fsn_get_main_menu($atts = false, $content = false) {
 		<nav class="navbar navbar-default" role="navigation">
             <?php do_action('fsn_before_main_menu', $atts); ?>
             <div class="navbar-header">
-            	<a class="navbar-brand visible-xs<?php echo !empty($mobile_logo_id) ? ' brand-image' : '' ?>" href="<?php echo home_url(); ?>"><?php echo $mobile_brand; ?></a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo $unique_id; ?>">
+            	<a class="navbar-brand visible-xs<?php echo esc_attr(!empty($mobile_logo_id)) ? ' brand-image' : '' ?>" href="<?php echo home_url(); ?>"><?php echo $mobile_brand; ?></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo esc_attr($unique_id); ?>">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>                
             </div>
-            <div id="main-nav-collapse-<?php echo $unique_id; ?>" class="collapse navbar-collapse">
+            <div id="main-nav-collapse-<?php echo esc_attr($unique_id); ?>" class="collapse navbar-collapse">
                 <?php do_action('fsn_prepend_main_menu', $atts); ?>
                 <?php
                 wp_nav_menu(array(
@@ -525,7 +524,7 @@ function fsn_get_menu_layout_stacked_list_item($atts = false, $content = false) 
 	
 	if (!empty($button)) {
 		$button_object = fsn_get_button_object($button);
-		$output .= '<li'. (!empty($user_classes) ? ' class="'. $user_classes .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object) .'>'. $button_object['button_label'] .'</a></li>';
+		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object) .'>'. esc_html($button_object['button_label']) .'</a></li>';
 			
 	}
 		
@@ -555,7 +554,7 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 	if (!empty($button)) {
 		$button_object = fsn_get_button_object($button);
 		$button_classes = !empty($button_style) ? $button_style : '';
-		$output .= '<li'. (!empty($user_classes) ? ' class="'. $user_classes .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. $button_object['button_label'] .'</a></li>';
+		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. esc_html($button_object['button_label']) .'</a></li>';
 			
 	}
 		
