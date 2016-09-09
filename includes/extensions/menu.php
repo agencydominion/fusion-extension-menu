@@ -49,11 +49,11 @@ class FusionMenu	{
 		check_ajax_referer( 'fsn-admin-edit-menu', 'security' );
 		
 		//verify capabilities
-		if ( !current_user_can( 'edit_post', $_POST['post_id'] ) )
+		if ( !current_user_can( 'edit_post', intval($_POST['post_id']) ) )
 			die( '-1' );
 			
 		global $fsn_menu_layouts;
-		$menu_layout = $_POST['menu_layout'];
+		$menu_layout = sanitize_text_field($_POST['menu_layout']);
 		
 		if (!empty($fsn_menu_layouts) && !empty($menu_layout)) {
 			$response_array = array();
