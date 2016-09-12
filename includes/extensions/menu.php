@@ -210,7 +210,7 @@ class FusionMenu	{
 		
 		if (!empty($menu_layout)) {
 			$output .= '<div class="fsn-menu '. esc_attr($menu_layout) .' '. fsn_style_params_class($atts) .'">';
-				$callback_function = 'fsn_get_'. $menu_layout .'_menu';
+				$callback_function = 'fsn_get_'. sanitize_text_field($menu_layout) .'_menu';
 				$output .= call_user_func($callback_function, $atts, $content);
 			$output .= '</div>';
 		}
@@ -386,7 +386,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
 		<nav class="navbar navbar-default" role="navigation">
             <?php do_action('fsn_before_main_menu', $atts); ?>
             <div class="navbar-header">
-            	<a class="navbar-brand visible-xs<?php echo esc_attr(!empty($mobile_logo_id)) ? ' brand-image' : '' ?>" href="<?php echo home_url(); ?>"><?php echo $mobile_brand; ?></a>
+            	<a class="navbar-brand visible-xs<?php echo esc_attr(!empty($mobile_logo_id)) ? ' brand-image' : '' ?>" href="<?php echo esc_url(home_url()); ?>"><?php echo $mobile_brand; ?></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo esc_attr($unique_id); ?>">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -406,7 +406,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
 				));
 				?>
 				<?php if (!empty($mobile_search)) : ?>
-					<form role="search" method="get" class="visible-xs mobile-searchform clearfix" action="<?php echo home_url('/'); ?>">
+					<form role="search" method="get" class="visible-xs mobile-searchform clearfix" action="<?php echo esc_url(home_url('/')); ?>">
 						<input type="text" name="s" class="search-query form-control" placeholder="Search...">
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
