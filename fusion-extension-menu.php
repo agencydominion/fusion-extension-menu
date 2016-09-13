@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Menu
  * Plugin URI: http://fusion.1867dev.com
  * Description: Menu Extension Package for Fusion.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * License: GPL2
