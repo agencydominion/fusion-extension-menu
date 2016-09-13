@@ -235,7 +235,7 @@ class FusionMenu	{
 		}
 		
 		$main_layout = array(
-			'name' => __('Main Menu', 'fusion-extension-menu'),
+			'name' => __('Main', 'fusion-extension-menu'),
 			'params' => array(
 				array(
 					'type' => 'select',
@@ -271,7 +271,7 @@ class FusionMenu	{
 	public function stacked_layout($menu_layouts) {
 				
 		$stacked_layout = array(
-			'name' => __('Stacked Menu', 'fusion-extension-menu'),
+			'name' => __('Stacked', 'fusion-extension-menu'),
 			'params' => array(
 				array(
 					'type' => 'custom_list',
@@ -320,7 +320,7 @@ class FusionMenu	{
 		$button_style_options = apply_filters('fsn_button_style_options', $button_style_options);
 				
 		$inline_layout = array(
-			'name' => __('Inline Menu', 'fusion-extension-menu'),
+			'name' => __('Inline', 'fusion-extension-menu'),
 			'params' => array(
 				array(
 					'type' => 'custom_list',
