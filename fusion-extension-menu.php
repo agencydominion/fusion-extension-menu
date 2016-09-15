@@ -33,9 +33,6 @@ class FusionExtensionMenu	{
 		// Enqueue front end scripts and styles
 		add_action('wp_enqueue_scripts', array($this, 'front_enqueue_scripts_styles'));	
 		
-		// Plugin activation / deactivation hooks
-		register_activation_hook( __FILE__, array($this, 'plugin_activated') );
-		register_deactivation_hook( __FILE__, array($this, 'plugin_deactivated') );
 	}
 	
 	/**

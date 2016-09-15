@@ -508,7 +508,7 @@ class Bootstrap_MultiCol_Dropdown_Walker_Nav_Menu extends Walker_Nav_Menu {
 //render menu wrapper ** function name must follow fsn_get_[menu layout key]_menu
 function fsn_get_stacked_menu($atts = false, $content = false) {
 	
-	$output .= '<ul class="list-unstyled">'. do_shortcode($content) .'</ul>';
+	$output = '<ul class="list-unstyled">'. do_shortcode($content) .'</ul>';
 	return $output;
 		
 }
@@ -536,7 +536,7 @@ function fsn_get_menu_layout_stacked_list_item($atts = false, $content = false) 
 //render menu wrapper ** function name must follow fsn_get_[menu layout key]_menu
 function fsn_get_inline_menu($atts = false, $content = false) {
 	
-	$output .= '<ul class="list-inline">'. do_shortcode($content) .'</ul>';
+	$output = '<ul class="list-inline">'. do_shortcode($content) .'</ul>';
 	return $output;
 		
 }
