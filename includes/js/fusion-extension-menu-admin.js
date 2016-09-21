@@ -123,6 +123,6 @@ function fsnUpdateMenuLayout() {
 //For select2 fields inside menu items
 jQuery(document).ready(function() {	
 	jQuery('body').on('fsnMenuUpdated', function(e) {
-		initSelect2Fields();
+		fsnInitPostSelect();
 	});
 });
