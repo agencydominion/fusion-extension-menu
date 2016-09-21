@@ -225,7 +225,7 @@ class FusionMenu	{
 	public function main_layout($menu_layouts) {
 		
 		//main menu layout
-		$menus = get_terms('nav_menu');
+		$menus = wp_get_nav_menus();
 		$menu_options = array();
 		if (!empty($menus)) {
 			$menu_options[''] = __('Choose menu.', 'fusion-extension-menu');
