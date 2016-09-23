@@ -21,7 +21,7 @@
  */
 
 
-class FusionExtensionMenu	{ 
+class FusionExtensionMenu	{
 	public function __construct() {
 						
 		// Initialize the language files
@@ -70,7 +70,10 @@ class FusionExtensionMenu	{
 		wp_register_script('bootstrap_hover_dropdown', plugin_dir_url( __FILE__ ) . 'includes/js/bootstrap-hover-dropdown.min.js', array('jquery'), '2.1.3', true);
 		//plugin
 		wp_register_script( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/js/fusion-extension-menu.js', array('jquery'), '1.0.0', true );
-		wp_enqueue_style( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-menu.css', false, '1.0.0' );
+		global $post;
+		if (has_shortcode($post->post_content, 'fsn_menu')) {
+			wp_enqueue_style( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-menu.css', false, '1.0.0' );
+		}
 	}
 	
 }
