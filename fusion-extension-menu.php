@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Menu
  * Plugin URI: http://fusion.1867dev.com
  * Description: Menu Extension Package for Fusion.
- * Version: 1.0.4
+ * Version: 1.1.0
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * License: GPL2
@@ -21,7 +21,7 @@
  */
 
 
-class FusionExtensionMenu	{ 
+class FusionExtensionMenu	{
 	public function __construct() {
 						
 		// Initialize the language files
@@ -33,9 +33,6 @@ class FusionExtensionMenu	{
 		// Enqueue front end scripts and styles
 		add_action('wp_enqueue_scripts', array($this, 'front_enqueue_scripts_styles'));	
 		
-		// Plugin activation / deactivation hooks
-		register_activation_hook( __FILE__, array($this, 'plugin_activated') );
-		register_deactivation_hook( __FILE__, array($this, 'plugin_deactivated') );
 	}
 	
 	/**
@@ -73,7 +70,10 @@ class FusionExtensionMenu	{
 		wp_register_script('bootstrap_hover_dropdown', plugin_dir_url( __FILE__ ) . 'includes/js/bootstrap-hover-dropdown.min.js', array('jquery'), '2.1.3', true);
 		//plugin
 		wp_register_script( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/js/fusion-extension-menu.js', array('jquery'), '1.0.0', true );
-		wp_enqueue_style( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-menu.css', false, '1.0.0' );
+		global $post;
+		if (has_shortcode($post->post_content, 'fsn_menu')) {
+			wp_enqueue_style( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-menu.css', false, '1.0.0' );
+		}
 	}
 	
 }

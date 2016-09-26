@@ -120,13 +120,9 @@ function fsnUpdateMenuLayout() {
 	});	
 }
 
-//For chosen fields inside menu items
+//For select2 fields inside menu items
 jQuery(document).ready(function() {	
 	jQuery('body').on('fsnMenuUpdated', function(e) {
-		jQuery('.chosen select').chosen({
-			allow_single_deselect: true,
-			width: '100%',
-			placeholder_text_single : 'Choose an option.'
-		});
+		fsnInitPostSelect();
 	});
 });
