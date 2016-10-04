@@ -54,6 +54,7 @@ class FusionMenu	{
 			
 		global $fsn_menu_layouts;
 		$menu_layout = sanitize_text_field($_POST['menu_layout']);
+		$response_array = array();
 		
 		if (!empty($fsn_menu_layouts) && !empty($menu_layout)) {
 			$response_array = array();
