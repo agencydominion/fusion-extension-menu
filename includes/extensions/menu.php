@@ -389,7 +389,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
             <div class="navbar-header">
             	<a class="navbar-brand visible-xs<?php echo esc_attr(!empty($mobile_logo_id)) ? ' brand-image' : '' ?>" href="<?php echo esc_url(home_url()); ?>"><?php echo $mobile_brand; ?></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo esc_attr($unique_id); ?>">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only"><?php _e('Toggle navigation', 'fusion-extension-menu'); ?></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
