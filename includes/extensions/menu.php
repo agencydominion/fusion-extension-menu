@@ -105,16 +105,18 @@ class FusionMenu	{
 		
 		if ($shortcode == 'fsn_menu' && !empty($saved_values['menu-layout']) && array_key_exists($saved_values['menu-layout'], $fsn_menu_layouts)) {
 			$saved_layout = $saved_values['menu-layout'];
-			$params_to_add = $fsn_menu_layouts[$saved_layout]['params'];
-			for ($i=0; $i < count($params_to_add); $i++) {
-				if (empty($params_to_add[$i]['class'])) {
-					$params_to_add[$i]['class'] = 'menu-layout';
-				} else {
-					$params_to_add[$i]['class'] .= ' menu-layout';
+			$params_to_add = !empty($fsn_menu_layouts[$saved_layout]['params']) ? $fsn_menu_layouts[$saved_layout]['params'] : '';
+			if (!empty($params_to_add)) {
+				for ($i=0; $i < count($params_to_add); $i++) {
+					if (empty($params_to_add[$i]['class'])) {
+						$params_to_add[$i]['class'] = 'menu-layout';
+					} else {
+						$params_to_add[$i]['class'] .= ' menu-layout';
+					}
 				}
+				//add layout params to initial load
+				array_splice($params, 1, 0, $params_to_add);
 			}
-			//add layout params to initial load
-			array_splice($params, 1, 0, $params_to_add);
 		}
 		
 		return $params;
@@ -408,7 +410,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
 				?>
 				<?php if (!empty($mobile_search)) : ?>
 					<form role="search" method="get" class="visible-xs mobile-searchform clearfix" action="<?php echo esc_url(home_url('/')); ?>">
-						<input type="text" name="s" class="search-query form-control" placeholder="Search...">
+						<input type="text" name="s" class="search-query form-control" placeholder="<?php _e('Search...', 'fusion-extension-menu'); ?>">
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
 				<?php endif; ?>

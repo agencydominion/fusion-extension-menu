@@ -26,7 +26,7 @@ function fsnUpdateMenu(event) {
 	var menu = jQuery('#fsn_menu_modal');
 	var currentLayout = menu.attr('data-layout');
 	if (currentLayout != '' && currentLayout != selectedLayout) {
-		var r = confirm('Changing the Menu Layout will erase your current menu. Do you wish to continue?');
+		var r = confirm(fsnExtMenuL10n.layout_change);
 		if (r == true) {			
 			menu.attr('data-layout', selectedLayout);
 			fsnUpdateMenuLayout();
@@ -52,7 +52,7 @@ function fsnUpdateMenuLayout() {
 	};
 	jQuery.post(ajaxurl, data, function(response) {
 		if (response == '-1') {
-			alert('Oops, something went wrong. Please reload the page and try again.');
+			alert(fsnExtMenuL10n.error);
 			return false;
 		}
 		
@@ -112,7 +112,7 @@ function fsnUpdateMenuLayout() {
 			});
 		}
 		//initialize color pickers
-		jQuery('.ad-color-picker').wpColorPicker();
+		jQuery('.fsn-color-picker').wpColorPicker();
 		//set dependencies
 		setDependencies(modalSelector);
 		//trigger item added event
