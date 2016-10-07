@@ -321,6 +321,14 @@ class FusionMenu	{
 			'btn btn-link' => __('Button - Link', 'fusion-extension-menu')	
 		);
 		$button_style_options = apply_filters('fsn_button_style_options', $button_style_options);
+		
+		$button_size_options = array(
+			'' => __('Default', 'fusion-extension-menu'),
+			'btn-lg' => __('Large', 'fusion-extension-menu'),
+			'btn-sm' => __('Small', 'fusion-extension-menu'),
+			'btn-xs' => __('Extra Small', 'fusion-extension-menu'),	
+		);
+		$button_size_options = apply_filters('fsn_button_size_options', $button_size_options);
 				
 		$inline_layout = array(
 			'name' => __('Inline', 'fusion-extension-menu'),
@@ -341,6 +349,16 @@ class FusionMenu	{
 							'options' => $button_style_options,
 							'param_name' => 'button_style',
 							'label' => __('Style', 'fusion-extension-menu')
+						),
+						array(
+							'type' => 'select',
+							'options' => $button_size_options,
+							'param_name' => 'button_size',
+							'label' => __('Size', 'fusion-extension-menu'),
+							'dependency' => array(
+								'param_name' => 'button_style',
+								'value' => array('btn btn-default', 'btn btn-primary', 'btn btn-success', 'btn btn-info', 'btn btn-warning', 'btn btn-danger', 'btn btn-link')
+							)
 						),
 						array(
 							'type' => 'text',
@@ -549,6 +567,7 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 	extract( shortcode_atts( array(
 		'button' => '',
 		'button_style' => '',
+		'button_size' => '',
 		'user_classes' => ''
 	), $atts ) );
 	
@@ -557,6 +576,9 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 	if (!empty($button)) {
 		$button_object = fsn_get_button_object($button);
 		$button_classes = !empty($button_style) ? $button_style : '';
+		if (!empty($button_style) && !empty($button_size)) {
+			$button_classes .= ' '. $button_size;
+		}
 		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. esc_html($button_object['button_label']) .'</a></li>';
 			
 	}
