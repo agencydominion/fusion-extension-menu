@@ -54,6 +54,7 @@ class FusionMenu	{
 			
 		global $fsn_menu_layouts;
 		$menu_layout = sanitize_text_field($_POST['menu_layout']);
+		$response_array = array();
 		
 		if (!empty($fsn_menu_layouts) && !empty($menu_layout)) {
 			$response_array = array();
@@ -104,16 +105,18 @@ class FusionMenu	{
 		
 		if ($shortcode == 'fsn_menu' && !empty($saved_values['menu-layout']) && array_key_exists($saved_values['menu-layout'], $fsn_menu_layouts)) {
 			$saved_layout = $saved_values['menu-layout'];
-			$params_to_add = $fsn_menu_layouts[$saved_layout]['params'];
-			for ($i=0; $i < count($params_to_add); $i++) {
-				if (empty($params_to_add[$i]['class'])) {
-					$params_to_add[$i]['class'] = 'menu-layout';
-				} else {
-					$params_to_add[$i]['class'] .= ' menu-layout';
+			$params_to_add = !empty($fsn_menu_layouts[$saved_layout]['params']) ? $fsn_menu_layouts[$saved_layout]['params'] : '';
+			if (!empty($params_to_add)) {
+				for ($i=0; $i < count($params_to_add); $i++) {
+					if (empty($params_to_add[$i]['class'])) {
+						$params_to_add[$i]['class'] = 'menu-layout';
+					} else {
+						$params_to_add[$i]['class'] .= ' menu-layout';
+					}
 				}
+				//add layout params to initial load
+				array_splice($params, 1, 0, $params_to_add);
 			}
-			//add layout params to initial load
-			array_splice($params, 1, 0, $params_to_add);
 		}
 		
 		return $params;
@@ -318,6 +321,14 @@ class FusionMenu	{
 			'btn btn-link' => __('Button - Link', 'fusion-extension-menu')	
 		);
 		$button_style_options = apply_filters('fsn_button_style_options', $button_style_options);
+		
+		$button_size_options = array(
+			'' => __('Default', 'fusion-extension-menu'),
+			'btn-lg' => __('Large', 'fusion-extension-menu'),
+			'btn-sm' => __('Small', 'fusion-extension-menu'),
+			'btn-xs' => __('Extra Small', 'fusion-extension-menu'),	
+		);
+		$button_size_options = apply_filters('fsn_button_size_options', $button_size_options);
 				
 		$inline_layout = array(
 			'name' => __('Inline', 'fusion-extension-menu'),
@@ -338,6 +349,16 @@ class FusionMenu	{
 							'options' => $button_style_options,
 							'param_name' => 'button_style',
 							'label' => __('Style', 'fusion-extension-menu')
+						),
+						array(
+							'type' => 'select',
+							'options' => $button_size_options,
+							'param_name' => 'button_size',
+							'label' => __('Size', 'fusion-extension-menu'),
+							'dependency' => array(
+								'param_name' => 'button_style',
+								'value' => array('btn btn-default', 'btn btn-primary', 'btn btn-success', 'btn btn-info', 'btn btn-warning', 'btn btn-danger', 'btn btn-link')
+							)
 						),
 						array(
 							'type' => 'text',
@@ -388,7 +409,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
             <div class="navbar-header">
             	<a class="navbar-brand visible-xs<?php echo esc_attr(!empty($mobile_logo_id)) ? ' brand-image' : '' ?>" href="<?php echo esc_url(home_url()); ?>"><?php echo $mobile_brand; ?></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo esc_attr($unique_id); ?>">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only"><?php _e('Toggle navigation', 'fusion-extension-menu'); ?></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -407,7 +428,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
 				?>
 				<?php if (!empty($mobile_search)) : ?>
 					<form role="search" method="get" class="visible-xs mobile-searchform clearfix" action="<?php echo esc_url(home_url('/')); ?>">
-						<input type="text" name="s" class="search-query form-control" placeholder="Search...">
+						<input type="text" name="s" class="search-query form-control" placeholder="<?php _e('Search...', 'fusion-extension-menu'); ?>">
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
 				<?php endif; ?>
@@ -546,6 +567,7 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 	extract( shortcode_atts( array(
 		'button' => '',
 		'button_style' => '',
+		'button_size' => '',
 		'user_classes' => ''
 	), $atts ) );
 	
@@ -554,6 +576,9 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 	if (!empty($button)) {
 		$button_object = fsn_get_button_object($button);
 		$button_classes = !empty($button_style) ? $button_style : '';
+		if (!empty($button_style) && !empty($button_size)) {
+			$button_classes .= ' '. $button_size;
+		}
 		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. esc_html($button_object['button_label']) .'</a></li>';
 			
 	}

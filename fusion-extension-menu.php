@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Menu
  * Plugin URI: http://www.agencydominion.com/fusion/
  * Description: Menu Extension Package for Fusion.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * License: GPL2
@@ -56,6 +56,12 @@ class FusionExtensionMenu	{
 					'fsnEditMenuNonce' => wp_create_nonce('fsn-admin-edit-menu')
 				)
 			);
+			//add translation strings to script
+			$translation_array = array(
+				'error' => __('Oops, something went wrong. Please reload the page and try again.','fusion-extension-menu'),
+				'layout_change' => __('Changing the Menu Layout will erase the current Menu. Continue?','fusion-extension-menu')
+			);
+			wp_localize_script('fsn_menu_admin', 'fsnExtMenuL10n', $translation_array);
 		}
 	}
 	
