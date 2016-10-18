@@ -311,22 +311,22 @@ class FusionMenu	{
 	public function inline_layout($menu_layouts) {
 		
 		$button_style_options = array(
-			'' => __('Default', 'fusion-extension-menu'),
-			'btn btn-default' => __('Button - Default', 'fusion-extension-menu'),
-			'btn btn-primary' => __('Button - Primary', 'fusion-extension-menu'),
-			'btn btn-success' => __('Button - Success', 'fusion-extension-menu'),
-			'btn btn-info' => __('Button - Info', 'fusion-extension-menu'),
-			'btn btn-warning' => __('Button - Warning', 'fusion-extension-menu'),
-			'btn btn-danger' => __('Button - Danger', 'fusion-extension-menu'),
-			'btn btn-link' => __('Button - Link', 'fusion-extension-menu')	
+			'btn btn-default' => __('Default', 'fusion-extension-menu'),
+			'btn btn-primary' => __('Primary', 'fusion-extension-menu'),
+			'btn btn-success' => __('Success', 'fusion-extension-menu'),
+			'btn btn-info' => __('Info', 'fusion-extension-menu'),
+			'btn btn-warning' => __('Warning', 'fusion-extension-menu'),
+			'btn btn-danger' => __('Danger', 'fusion-extension-menu'),
+			'btn btn-link' => __('Link', 'fusion-extension-menu'),
+			'none' => __('None', 'fusion-extension-menu')
 		);
 		$button_style_options = apply_filters('fsn_button_style_options', $button_style_options);
 		
 		$button_size_options = array(
-			'' => __('Default', 'fusion-extension-menu'),
+			'default' => __('Default', 'fusion-extension-menu'),
 			'btn-lg' => __('Large', 'fusion-extension-menu'),
 			'btn-sm' => __('Small', 'fusion-extension-menu'),
-			'btn-xs' => __('Extra Small', 'fusion-extension-menu'),	
+			'btn-xs' => __('Extra Small', 'fusion-extension-menu')	
 		);
 		$button_size_options = apply_filters('fsn_button_size_options', $button_size_options);
 				
@@ -575,9 +575,11 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 	
 	if (!empty($button)) {
 		$button_object = fsn_get_button_object($button);
-		$button_classes = !empty($button_style) ? $button_style : '';
-		if (!empty($button_style) && !empty($button_size)) {
-			$button_classes .= ' '. $button_size;
+		if (!empty($button_style) && $button_style != 'none') {
+			$button_classes = $button_style;
+			$button_classes .= !empty($button_size) && $button_size != 'default' ? ' '. $button_size : '';
+		} else {
+			$button_classes = '';
 		}
 		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. esc_html($button_object['button_label']) .'</a></li>';
 			
