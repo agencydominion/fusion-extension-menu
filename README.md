@@ -18,6 +18,6 @@ Allows you to build a list of vertically stacked menu items
 
 Allows you to build a list of horizontally placed menu items
 
-[Learn more about the Menu Extension in the Fusion User Guide](https://agencydominion.zendesk.com/hc/en-us/articles/220434347-Menu)
+[Learn more about the Menu Extension in the Fusion User Guide](http://agencydominion.helpscoutdocs.com/article/44-menu)
 
 **Requires the core [Fusion](https://wordpress.org/plugins/fusion/) plugin.**
