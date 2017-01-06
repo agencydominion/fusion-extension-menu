@@ -87,9 +87,6 @@
 		width:auto;
 		height:34px;
 	}
-	.fsn-menu.main .navbar-toggle	{
-		margin-right:0;
-	}
 	.fsn-menu.main .navbar-nav	{
 		margin-left:0;
 		margin-right:0;
@@ -113,6 +110,52 @@
 	.fsn-menu.main .dropdown-menu .divider	{
 		margin-left:15px;
 		margin-right:15px;
+	}
+	.fsn-menu .navbar-collapse	{
+		display:block;
+		height:0;
+		border:none;
+		overflow:hidden;
+		margin-left:-15px;
+		margin-right:-15px;
+		padding-left:15px;
+		padding-right:15px;
+	}
+	.fsn-menu .navbar-collapse.collapsing, .fsn-menu .navbar-collapse.in	{
+		height:auto;
+	}
+	.fsn-menu .navbar-collapse > ul	{
+		opacity:0;
+		-moz-transition:opacity 0.35s;
+		-webkit-transition:opacity 0.35s;
+		transition:opacity 0.35s;
+	}
+	.fsn-menu .navbar-collapse.collapsing-out > ul, .fsn-menu .navbar-collapse.collapse > ul	{
+		opacity:0;	
+	}
+	.fsn-menu .navbar-collapse.collapsing-in > ul, .fsn-menu .navbar-collapse.in > ul	{
+		opacity:1;
+	}
+	.fsn-menu .navbar-toggle	{
+		border-radius:0;
+		margin-right:0;
+		line-height:0;
+		padding:4px 9px;
+	}
+	.fsn-menu .navbar-toggle > .icon-collapse	{
+		display:block;
+	}
+	.fsn-menu .navbar-toggle > .icon-collapsed	{
+		display:none;
+	}
+	.fsn-menu .navbar-toggle.collapsed > .icon-collapse	{
+		display:none;
+	}
+	.fsn-menu .navbar-toggle.collapsed > .icon-collapsed	{
+		display:block;
+	}
+	.fsn-menu .navbar-default .navbar-toggle:focus, .fsn-menu .navbar-default .navbar-toggle:hover	{
+		background:transparent;
 	}
 }
 

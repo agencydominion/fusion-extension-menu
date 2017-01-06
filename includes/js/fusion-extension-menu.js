@@ -47,3 +47,23 @@ jQuery(document).ready(function() {
 		});
 	}
 });
+
+//more descriptive collapsing classes
+jQuery(document).ready(function() {
+	var navbarCollapses = jQuery('.fsn-menu .navbar-collapse');
+	navbarCollapses.each(function() {
+		var navbarCollapse = jQuery(this);
+		navbarCollapse.on('show.bs.collapse', function(e) {
+			navbarCollapse.addClass('collapsing-in');	
+		});
+		navbarCollapse.on('shown.bs.collapse', function(e) {
+			navbarCollapse.removeClass('collapsing-in');	
+		});
+		navbarCollapse.on('hide.bs.collapse', function(e) {
+			navbarCollapse.addClass('collapsing-out');	
+		});
+		navbarCollapse.on('hidden.bs.collapse', function(e) {
+			navbarCollapse.removeClass('collapsing-out');	
+		});
+	});
+});
