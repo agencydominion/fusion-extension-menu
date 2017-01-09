@@ -124,16 +124,16 @@
 	.fsn-menu .navbar-collapse.collapsing, .fsn-menu .navbar-collapse.in	{
 		height:auto;
 	}
-	.fsn-menu .navbar-collapse > ul	{
+	.fsn-menu .navbar-collapse > *	{
 		opacity:0;
 		-moz-transition:opacity 0.35s;
 		-webkit-transition:opacity 0.35s;
 		transition:opacity 0.35s;
 	}
-	.fsn-menu .navbar-collapse.collapsing-out > ul, .fsn-menu .navbar-collapse.collapse > ul	{
+	.fsn-menu .navbar-collapse.collapsing-out > *, .fsn-menu .navbar-collapse.collapse > *	{
 		opacity:0;	
 	}
-	.fsn-menu .navbar-collapse.collapsing-in > ul, .fsn-menu .navbar-collapse.in > ul	{
+	.fsn-menu .navbar-collapse.collapsing-in > *, .fsn-menu .navbar-collapse.in > *	{
 		opacity:1;
 	}
 	.fsn-menu .navbar-toggle	{
