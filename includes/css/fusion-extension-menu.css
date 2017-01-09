@@ -75,17 +75,26 @@
 	.mobile-searchform .btn:after	{
 		display:none;
 	}
+	.fsn-menu.main .navbar-header	{
+		text-align:center;
+		line-height:0;
+		height:50px;
+	}
 	.fsn-menu.main .navbar-brand	{
-		padding-left:0;
-		padding-right:0;
+		display:inline-block !important;
+		padding:7px 0;
+		margin-top:8px;
+		margin-bottom:8px;
+		float:none;
+		height:34px;
 	}
 	.fsn-menu.main .navbar-brand.brand-image	{
-		padding-top:8px;
-		padding-bottom:8px;
+		padding-top:0;
+		padding-bottom:0;
 	}
 	.fsn-menu.main .navbar-brand.brand-image img	{
-		width:auto;
 		height:34px;
+		width:auto;
 	}
 	.fsn-menu.main .navbar-nav	{
 		margin-left:0;
@@ -141,6 +150,10 @@
 		margin-right:0;
 		line-height:0;
 		padding:4px 9px;
+		position:absolute;
+		top:0;
+		left:0;
+		margin-right:0;
 	}
 	.fsn-menu .navbar-toggle > .icon-collapse	{
 		display:block;
