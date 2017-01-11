@@ -75,6 +75,12 @@
 	.mobile-searchform .btn:after	{
 		display:none;
 	}
+	.fsn-menu.main	{
+		margin-left:-15px;
+		margin-right:-15px;
+		padding-left:15px;
+		padding-right:15px;
+	}
 	.fsn-menu.main .navbar-header	{
 		text-align:center;
 		line-height:0;
