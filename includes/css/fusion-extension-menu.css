@@ -81,6 +81,12 @@
 		padding-left:15px;
 		padding-right:15px;
 	}
+	.fsn-row > .container-fluid .fsn-menu.main	{
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
+	}
 	.fsn-menu.main .navbar-header	{
 		text-align:center;
 		line-height:0;
@@ -113,8 +119,10 @@
 		overflow:hidden;
 		margin-left:-15px;
 		margin-right:-15px;
-		padding-left:15px;
-		padding-right:15px;
+	}
+	.fsn-row > .container-fluid .fsn-menu .navbar-collapse	{
+		margin-left:0;
+		margin-right:0;
 	}
 	.fsn-menu .navbar-collapse.collapsing, .fsn-menu .navbar-collapse.in	{
 		height:auto;
