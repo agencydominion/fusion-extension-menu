@@ -405,18 +405,17 @@ function fsn_get_main_menu($atts = false, $content = false) {
 		ob_start();
 		?>
 		<nav class="navbar navbar-default" role="navigation">
-            <?php do_action('fsn_before_main_menu', $atts); ?>
+            <?php do_action('fsn_before_main_menu', $atts, $content); ?>
             <div class="navbar-header">
             	<a class="navbar-brand visible-xs<?php echo esc_attr(!empty($mobile_logo_id)) ? ' brand-image' : '' ?>" href="<?php echo esc_url(home_url()); ?>"><?php echo $mobile_brand; ?></a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo esc_attr($unique_id); ?>">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-collapse-<?php echo esc_attr($unique_id); ?>">
                     <span class="sr-only"><?php _e('Toggle navigation', 'fusion-extension-menu'); ?></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-collapsed"><i class="material-icons">&#xE5D2;</i></span>
+                    <span class="icon-collapse"><i class="material-icons">&#xE5CD;</i></span>
                 </button>                
             </div>
             <div id="main-nav-collapse-<?php echo esc_attr($unique_id); ?>" class="collapse navbar-collapse">
-                <?php do_action('fsn_prepend_main_menu', $atts); ?>
+                <?php do_action('fsn_prepend_main_menu', $atts, $content); ?>
                 <?php
                 wp_nav_menu(array(
 					'menu' => $menu_id,
@@ -432,9 +431,9 @@ function fsn_get_main_menu($atts = false, $content = false) {
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
 				<?php endif; ?>
-				<?php do_action('fsn_append_main_menu', $atts); ?>
+				<?php do_action('fsn_append_main_menu', $atts, $content); ?>
             </div>
-            <?php do_action('fsn_after_main_menu', $atts); ?>
+            <?php do_action('fsn_after_main_menu', $atts, $content); ?>
 	    </nav>
 		<?php
 		$output .= ob_get_clean();
