@@ -53,14 +53,17 @@ jQuery(document).ready(function() {
 	var navbarCollapses = jQuery('.fsn-menu .navbar-collapse');
 	navbarCollapses.each(function() {
 		var navbarCollapse = jQuery(this);
+		var navbar = navbarCollapse.parents('.fsn-menu');
 		navbarCollapse.on('show.bs.collapse', function(e) {
-			navbarCollapse.addClass('collapsing-in');	
+			navbarCollapse.addClass('collapsing-in');
+			navbar.addClass('expanded');
 		});
 		navbarCollapse.on('shown.bs.collapse', function(e) {
 			navbarCollapse.removeClass('collapsing-in');	
 		});
 		navbarCollapse.on('hide.bs.collapse', function(e) {
 			navbarCollapse.addClass('collapsing-out');	
+			navbar.removeClass('expanded');
 		});
 		navbarCollapse.on('hidden.bs.collapse', function(e) {
 			navbarCollapse.removeClass('collapsing-out');	
