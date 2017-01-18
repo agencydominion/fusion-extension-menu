@@ -158,11 +158,13 @@ class FusionMenu	{
 				}
 				//add layout list items to global
 				foreach($menu_layouts as $menu_layout) {
-					foreach($menu_layout['params'] as $menu_layout_param) {
-						if ($menu_layout_param['type'] == 'custom_list') {
-							global $fsn_custom_lists;	
-							$fsn_custom_lists[$menu_layout_param['id']]['parent'] = 'fsn_menu';
-							$fsn_custom_lists[$menu_layout_param['id']]['params'] = $menu_layout_param['item_params'];
+					if (!empty($menu_layout['params'])) {
+						foreach($menu_layout['params'] as $menu_layout_param) {
+							if ($menu_layout_param['type'] == 'custom_list') {
+								global $fsn_custom_lists;	
+								$fsn_custom_lists[$menu_layout_param['id']]['parent'] = 'fsn_menu';
+								$fsn_custom_lists[$menu_layout_param['id']]['params'] = $menu_layout_param['item_params'];
+							}
 						}
 					}
 				}
