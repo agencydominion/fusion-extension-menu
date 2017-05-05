@@ -514,7 +514,7 @@ class Bootstrap_MultiCol_Dropdown_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$item_output = $args->before;
 		$item_output .= $is_label === true && $item->url == '#' ? '' : '<a'. $attributes .'>';
 		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-		$item_output .= ($depth == 0 && $args->walker->has_children) ? '<b class="caret"></b>' : '';
+		$item_output .= ($depth == 0 && $args->walker->has_children) ? '<span class="caret"></span>' : '';
 		$item_output .= $is_label === true && $item->url == '#' ? '' : '</a>';
 		$item_output .= $args->after;
  
