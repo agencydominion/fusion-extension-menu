@@ -222,3 +222,19 @@
 		margin-right:14px;
 	}
 }
+
+/**
+ * Inline Menu
+ */
+ 
+@media (max-width: 767px) {
+	.fsn-menu.inline .list-inline > li	{
+		display:block;
+		padding:0;
+	}
+	.fsn-menu.inline .btn	{
+		display:block;
+		width:100%;
+		margin-bottom:10px;
+	}	
+}
