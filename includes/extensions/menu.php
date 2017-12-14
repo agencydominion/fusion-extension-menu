@@ -151,7 +151,7 @@ class FusionMenu	{
 				$menu_layout_options = array();
 				$smart_supported = array();
 				$layout_specific_params = array();
-				$menu_layout_options[''] = 'Choose menu layout.';
+				$menu_layout_options[''] = __('Choose menu type.', 'fusion-extension-menu');
 				foreach($menu_layouts as $key => $value) {
 					//create array of layouts for select layout dropdown
 					$menu_layout_options[$key] = $value['name'];
