@@ -431,7 +431,7 @@ function fsn_get_main_menu($atts = false, $content = false) {
 					<form role="search" method="get" class="visible-xs mobile-searchform clearfix" action="<?php echo esc_url(home_url('/')); ?>">
 						<label for="fsn-menu-mobile-search" class="sr-only">Search</label>
 						<input id="fsn-menu-mobile-search" type="text" name="s" class="search-query form-control" placeholder="<?php _e('Search...', 'fusion-extension-menu'); ?>">
-						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Search</span></button>
 					</form>
 				<?php endif; ?>
 				<?php do_action('fsn_append_main_menu', $atts, $content); ?>
