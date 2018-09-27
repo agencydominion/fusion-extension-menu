@@ -5,11 +5,10 @@
 //init menu
 jQuery(document).ready(function() {
 	jQuery('body').on('show.bs.modal', '#fsn_menu_modal', function(e) {
-		var menu = jQuery('#fsn_menu_modal');
-		var selectLayoutElement = jQuery('[name="menu_layout"]');
+		var menuModal = jQuery(this);
+		var selectLayoutElement = menuModal.find('[name="menu_layout"]');
 		var selectedLayout = selectLayoutElement.val();
-		
-		menu.attr('data-layout', selectedLayout);
+		menuModal.attr('data-layout', selectedLayout);
 	});
 });
 
@@ -21,29 +20,29 @@ jQuery(document).ready(function() {
 });
 
 function fsnUpdateMenu(event) {
-	var selectLayoutElement = jQuery(event.target);		
+	var selectLayoutElement = jQuery(event.target);
 	var selectedLayout = selectLayoutElement.val();
-	var menu = jQuery('#fsn_menu_modal');
-	var currentLayout = menu.attr('data-layout');
+	var menuModal = selectLayoutElement.closest('.modal');
+	var currentLayout = menuModal.attr('data-layout');
 	if (currentLayout != '' && currentLayout != selectedLayout) {
 		var r = confirm(fsnExtMenuL10n.layout_change);
-		if (r == true) {			
-			menu.attr('data-layout', selectedLayout);
-			fsnUpdateMenuLayout();
+		if (r == true) {
+			menuModal.attr('data-layout', selectedLayout);
+			fsnUpdateMenuLayout(menuModal);
 		} else {
 			selectLayoutElement.find('option[value="'+ currentLayout +'"]').prop('selected', true);
 		}
 	} else {
-		menu.attr('data-layout', selectedLayout);
-		fsnUpdateMenuLayout();
+		menuModal.attr('data-layout', selectedLayout);
+		fsnUpdateMenuLayout(menuModal);
 	}
 }
 
 //update menu layout
-function fsnUpdateMenuLayout() {
+function fsnUpdateMenuLayout(menuModal) {
 	var postID = jQuery('input#post_ID').val();
-	var menuLayout = jQuery('[name="menu_layout"]').val();
-	
+	var menuLayout = menuModal.find('[name="menu_layout"]').val();
+
 	var data = {
 		action: 'menu_load_layout',
 		menu_layout: menuLayout,
@@ -55,10 +54,10 @@ function fsnUpdateMenuLayout() {
 			alert(fsnExtMenuL10n.error);
 			return false;
 		}
-		
-		jQuery('#fsn_menu_modal .tab-pane .form-group.menu-layout').remove();
+
+		menuModal.find('.tab-pane .form-group.menu-layout').remove();
 		if (response !== null) {
-			jQuery('#fsn_menu_modal .tab-pane').each(function() {
+			menuModal.find('.tab-pane').each(function() {
 				var tabPane = jQuery(this);
 				if (tabPane.attr('data-section-id') == 'general') {
 					tabPane.find('.form-group').first().after('<div class="layout-fields"></div>');
@@ -67,22 +66,22 @@ function fsnUpdateMenuLayout() {
 				}
 			});
 			for(i=0; i < response.length; i++) {
-				jQuery('#fsn_menu_modal .tab-pane[data-section-id="'+ response[i].section +'"] .layout-fields').append(response[i].output);
+				menuModal.find('.tab-pane[data-section-id="'+ response[i].section +'"] .layout-fields').append(response[i].output);
 			}
-			jQuery('#fsn_menu_modal .tab-pane').each(function() {
+			menuModal.find('.tab-pane').each(function() {
 				var tabPane = jQuery(this);
 				tabPane.find('.menu-layout').first().unwrap();
 				tabPane.find('.layout-fields:empty').remove();
 				//toggle panel tabs visibility
-				var tabPaneId = tabPane.attr('id'); 
+				var tabPaneId = tabPane.attr('id');
 				if (tabPane.is(':empty')) {
-					jQuery('a[data-toggle="tab"][href="#'+ tabPaneId +'"]').parent('li').hide();
+					menuModal.find('a[data-toggle="tab"][href="#'+ tabPaneId +'"]').parent('li').hide();
 				} else {
-					jQuery('a[data-toggle="tab"][href="#'+ tabPaneId +'"]').parent('li').show();
+					menuModal.find('a[data-toggle="tab"][href="#'+ tabPaneId +'"]').parent('li').show();
 				}
 			});
 		}
-		var modalSelector = jQuery('#fsn_menu_modal');
+		var modalSelector = menuModal;
 		//reinit tinyMCE
 		if (jQuery('#fsncontent').length > 0) {
 			//make compatable with TinyMCE 4 which is used starting with WordPress 3.9
@@ -94,9 +93,9 @@ function fsnUpdateMenuLayout() {
 			var $element = jQuery('#fsncontent');
 	        var qt, textfield_id = $element.attr("id"),
 	            content = '';
-	
+
 	        window.tinyMCEPreInit.mceInit[textfield_id] = _.extend({}, tinyMCEPreInit.mceInit['content']);
-	
+
 	        if(_.isUndefined(tinyMCEPreInit.qtInit[textfield_id])) {
 	            window.tinyMCEPreInit.qtInit[textfield_id] = _.extend({}, tinyMCEPreInit.qtInit['replycontent'], {id: textfield_id})
 	        }
@@ -109,7 +108,7 @@ function fsnUpdateMenuLayout() {
 	        //focus on this RTE
 	        tinyMCE.get('fsncontent').focus();
 			//destroy tinyMCE
-			modalSelector.on('hidden.bs.modal', function() {					
+			modalSelector.on('hidden.bs.modal', function() {
 				//make compatable with TinyMCE 4 which is used starting with WordPress 3.9
 				if(tinymce.majorVersion === "4") {
 					tinymce.execCommand('mceRemoveEditor', true, 'fsncontent');
@@ -124,11 +123,11 @@ function fsnUpdateMenuLayout() {
 		setDependencies(modalSelector);
 		//trigger item added event
 		jQuery('body').trigger('fsnMenuUpdated');
-	});	
+	});
 }
 
 //For select2 fields inside menu items
-jQuery(document).ready(function() {	
+jQuery(document).ready(function() {
 	jQuery('body').on('fsnMenuUpdated', function(e) {
 		fsnInitPostSelect();
 	});
