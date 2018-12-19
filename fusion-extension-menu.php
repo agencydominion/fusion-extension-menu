@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Menu
  * Plugin URI: http://www.agencydominion.com/fusion/
  * Description: Menu Extension Package for Fusion.
- * Version: 1.1.15
+ * Version: 1.1.16
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * Text Domain: fusion-extension-menu
@@ -88,7 +88,7 @@ class FusionExtensionMenu	{
 	public function front_enqueue_scripts_styles() {
 		wp_register_script('bootstrap_hover_dropdown', plugin_dir_url( __FILE__ ) . 'includes/js/bootstrap-hover-dropdown.min.js', array('jquery'), '2.1.3', true);
 		//plugin
-		wp_register_script( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/js/fusion-extension-menu.js', array('jquery'), '1.0.0', true );
+		wp_register_script( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/js/fusion-extension-menu.js', array('jquery','fsn_core','bootstrap_hover_dropdown'), '1.1.16', true );
 		wp_enqueue_style( 'fsn_menu', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-menu.css', false, '1.0.0' );
 	}
 
