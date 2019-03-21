@@ -477,7 +477,7 @@ class Bootstrap_MultiCol_Dropdown_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 		// managing column: add column class to an element to get a column before it.
 		$column_class_position = array_search('column', $classes);
-		if($column_class_position !== false){
+		if($column_class_position !== false && $depth){
 			$output .= "</ul></div><div class=\"multi-col-nav\"><ul class=\"dropdown-menu\">\n";
 			unset($classes[$column_class_position]);
 		}
