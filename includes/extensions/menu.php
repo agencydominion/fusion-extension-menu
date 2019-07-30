@@ -510,7 +510,7 @@ class Bootstrap_MultiCol_Dropdown_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
 		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
 		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-		$attributes .= ($args->walker->has_children) 	    ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
+		$attributes .= ($args->walker->has_children) 	    ? ' class="dropdown-toggle" data-toggle="dropdown" role="button"' : '';
 
 		$item_output = $args->before;
 		$item_output .= $is_label === true && $item->url == '#' ? '' : '<a'. $attributes .'>';
