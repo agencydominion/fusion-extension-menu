@@ -547,7 +547,10 @@ function fsn_get_menu_layout_stacked_list_item($atts = false, $content = false) 
 
 	if (!empty($button)) {
 		$button_object = fsn_get_button_object($button);
-		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object) .'>'. esc_html($button_object['button_label']) .'</a></li>';
+		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'>';
+		$button_output = '<a'. fsn_get_button_anchor_attributes($button_object) .'>'. esc_html($button_object['button_label']) .'</a>';
+		$output .= apply_filters('fsn_menu_stacked_button_output', $button_output, $button_object, $atts);
+		$output .= '</li>';
 
 	}
 
@@ -583,7 +586,10 @@ function fsn_get_menu_layout_inline_list_item($atts = false, $content = false) {
 		} else {
 			$button_classes = '';
 		}
-		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'><a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. esc_html($button_object['button_label']) .'</a></li>';
+		$output .= '<li'. (!empty($user_classes) ? ' class="'. esc_attr($user_classes) .'"' : '') .'>';
+			$button_output = '<a'. fsn_get_button_anchor_attributes($button_object, $button_classes) .'>'. esc_html($button_object['button_label']) .'</a>';
+			$output .= apply_filters('fsn_menu_inline_button_output', $button_output, $button_object, $atts);
+		$output .= '</li>';
 
 	}
 
