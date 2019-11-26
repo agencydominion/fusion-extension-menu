@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Menu
  * Plugin URI: http://www.agencydominion.com/fusion/
  * Description: Menu Extension Package for Fusion.
- * Version: 1.1.19
+ * Version: 1.1.20
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * Text Domain: fusion-extension-menu
