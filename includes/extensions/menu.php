@@ -216,7 +216,7 @@ class FusionMenu	{
 		if (!empty($menu_layout)) {
 			$output .= '<div class="fsn-menu '. esc_attr($menu_layout) .' '. fsn_style_params_class($atts) .'">';
 				$callback_function = 'fsn_get_'. sanitize_text_field($menu_layout) .'_menu';
-				$output .= call_user_func($callback_function, $atts, $content);
+				$output .= is_callable($callback_function) ? call_user_func($callback_function, $atts, $content) : '';
 			$output .= '</div>';
 		}
 
