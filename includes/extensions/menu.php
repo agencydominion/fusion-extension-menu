@@ -398,6 +398,9 @@ function fsn_get_main_menu($atts = false, $content = false) {
 		$unique_id = uniqid();
 		if (!empty($mobile_logo_id)) {
 			$mobile_logo_attrs = wp_get_attachment_image_src($mobile_logo_id, 'full');
+			if (!is_array($mobile_logo_attrs)) {
+				$mobile_logo_attrs = array('', '', '', false); //attachment missing: same empty output as before, without the warnings
+			}
 			$mobile_brand = '<img src="'. esc_url($mobile_logo_attrs[0]) .'" alt="'. esc_attr(get_bloginfo('name')) .'">';
 		} else {
 			$mobile_brand = get_bloginfo('name');
